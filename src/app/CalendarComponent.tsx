@@ -125,7 +125,7 @@ const CalendarComponent = () => {
           // Function to open the booking URL and replace content in the popup
           const openBookingUrl = () => {
             const popupContent = popup.querySelector('.popup-content');
-            if (popupContent) {
+            if (popupContent !== null) { // Ensure popupContent is not null before accessing innerHTML
               popupContent.innerHTML = `<iframe src="${bookingUrl}" style="width: 100%; height: 500px; border: none;"></iframe>`;
             } else {
               console.error('Popup content not found.');
