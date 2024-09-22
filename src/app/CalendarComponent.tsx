@@ -232,7 +232,6 @@ function getHardcodedEvents() {
       extendedProps: { category: '12', displaySlots: false },
       display: 'background',
     },
-    // Additional hardcoded events...
   ];
 
   const eventsAcrossResources = [];
@@ -249,7 +248,6 @@ function getHardcodedResources() {
   return [
     { id: '29', title: 'Woodlands Stage', category: 'Program', order_id: 'a', logo: ' ' },
     { id: '30', title: 'Fresh Lounge', category: 'Program', order_id: 'b', logo: ' ' },
-    // Additional resources...
   ];
 }
 
