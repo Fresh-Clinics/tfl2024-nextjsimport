@@ -70,10 +70,10 @@ const CalendarComponent = () => {
             const showTitle = arg.event.extendedProps.category !== '12';
 
             return {
-              html: `<div class="fc-event-content" style="border-top: 4px solid ${borderColor} !important; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                        ${showTitle ? `<div class="fc-event-title">${arg.event.title}</div>` : ''}
-                        <div class="fc-event-slots">${displaySlots ? `Slots Available: ${arg.event.extendedProps.bookings_limit}` : ''}</div>
-                     </div>`
+              html: <div class="fc-event-content" style="border-top: 4px solid ${borderColor} !important; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                        ${showTitle ? <div class="fc-event-title">${arg.event.title}</div> : ''}
+                        <div class="fc-event-slots">${displaySlots ? Slots Available: ${arg.event.extendedProps.bookings_limit} : ''}</div>
+                     </div>
             };
           } else {
             return { html: '<div class="fc-event-content"><div class="fc-event-title">Invalid Event</div></div>' };
@@ -81,7 +81,7 @@ const CalendarComponent = () => {
         },
         eventDidMount: (info) => {
           tippy(info.el, {
-            content: `<div style="font-size: 1rem!important; font-family: Arial;"><strong>${info.event.title}</strong></div><br><div style="font-size: 0.9rem!important; font-family: Arial;">${info.event.extendedProps.description}</div>`,
+            content: <div style="font-size: 1rem!important; font-family: Arial;"><strong>${info.event.title}</strong></div><br><div style="font-size: 0.9rem!important; font-family: Arial;">${info.event.extendedProps.description}</div>,
             allowHTML: true,
             theme: 'light-border',
             placement: 'top',
@@ -94,16 +94,16 @@ const CalendarComponent = () => {
 
           const popup = document.createElement('div');
           popup.className = 'popup-overlay';
-          popup.innerHTML = `
+          popup.innerHTML = 
             <div class="popup-content">
                 <span class="close-popup" onclick="this.parentElement.parentElement.remove()">×</span>
-                ${getResourceLogo(event.resourceId) ? `<img src="${getResourceLogo(event.resourceId)}" style="width: 100px; margin: 10px auto;" alt="Resource Logo">` : ''}
+                ${getResourceLogo(event.resourceId) ? <img src="${getResourceLogo(event.resourceId)}" style="width: 100px; margin: 10px auto;" alt="Resource Logo"> : ''}
                 <p><strong>${startDateTime} - ${endDateTime}</strong></p>
                 <div style="font-size: 1rem!important; font-family: Arial; line-height:2;"><strong>${event.title}</h3></strong></div>
                 <div style="font-size: 0.9rem; font-family: Arial;">${event.extendedProps.description}</div>                  
                 <div class="popup-footer">Bookings open Monday 23rd October at 7:00PM AEST</div>
             </div>
-          `;
+          ;
           document.body.appendChild(popup);
         },
         allDaySlot: false,
@@ -141,7 +141,7 @@ function formatTimeToAEST(date) {
 
 function getResourceLogo(resourceId) {
   const resource = getHardcodedResources().find(r => r.id === resourceId);
-  return resource && resource.logo ? `image-files/${resource.logo}` : null;
+  return resource && resource.logo ? image-files/${resource.logo} : null;
 }
 
 // Combine hardcoded events and events from events.tsx
@@ -160,7 +160,7 @@ function processAdditionalEvents(events) {
     event.timeMatrix.forEach(timeMatrix => {
       Object.entries(timeMatrix.timeslots).forEach(([date, slots]) => {
         slots.forEach(slot => {
-          const startDateTime = `${date}T${slot}`;
+          const startDateTime = ${date}T${slot};
           const endDateTime = DateTime.fromISO(startDateTime)
             .plus({ minutes: parseInt(event.duration) })
             .toISO();
