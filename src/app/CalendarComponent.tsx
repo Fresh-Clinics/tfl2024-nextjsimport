@@ -102,7 +102,7 @@ const CalendarComponent = () => {
           popup.innerHTML = `
             <div class="popup-content">
               <span class="close-popup" onclick="this.parentElement.parentElement.remove()">×</span>
-              ${getResourceLogo(event.extendedProps.resourceId) ? `<img src="${getResourceLogo(event.extendedProps.resourceId)}" style="width: 100px; margin: 10px auto;" alt="Resource Logo">` : ''}
+              ${getResourceLogo(event.extendedProps?.resourceId) ? `<img src="${getResourceLogo(event.extendedProps.resourceId)}" style="width: 100px; margin: 10px auto;" alt="Resource Logo">` : ''}
               <p><strong>${startDateTime} - ${endDateTime}</strong></p>
               <div style="font-size: 1rem!important; font-family: Arial; line-height:2;"><strong>${event.title}</strong></div>
               <div style="font-size: 0.9rem; font-family: Arial;">${event.extendedProps.description}</div>
