@@ -106,7 +106,7 @@ const CalendarComponent = () => {
           popup.innerHTML = `
             <div class="popup-content">
                 <span class="close-popup" onclick="this.parentElement.parentElement.remove()">×</span>
-                ${getResourceLogo(event.resourceId) ? `<img src="${getResourceLogo(event.resourceId)}" style="width: 100px; margin: 10px auto;" alt="Resource Logo">` : ''}
+                ${getResourceLogo(event.extendedProps.resourceId) ? `<img src="${getResourceLogo(event.extendedProps.resourceId)}" style="width: 100px; margin: 10px auto;" alt="Resource Logo">` : ''}
                 <p><strong>${startDateTime} - ${endDateTime}</strong></p>
                 <div style="font-size: 1rem!important; font-family: Arial; line-height:2;"><strong>${event.title}</strong></div>
                 <div style="font-size: 0.9rem; font-family: Arial;">${event.extendedProps.description}</div>                  
@@ -179,13 +179,15 @@ function processAdditionalEvents(events) {
             title: event.name,
             start: startDateTime,
             end: endDateTime,
-            resourceId: timeMatrix.provider_id.toString(),
-            description: event.description || '',
-            bookings_limit: event.bookings_limit,
+            extendedProps: {
+              resourceId: timeMatrix.provider_id.toString(),
+              description: event.description || '',
+              bookings_limit: event.bookings_limit,
+              rawStartTime: startDateTime,
+              rawEndTime: endDateTime,
+              displaySlots: true,
+            },
             category: event.categories[0], // Assuming the first category is used
-            rawStartTime: startDateTime,
-            rawEndTime: endDateTime,
-            displaySlots: true,
           });
         });
       });
